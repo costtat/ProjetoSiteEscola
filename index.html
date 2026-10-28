@@ -3,309 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro de Estudos - ENEM</title>
+    <style>
+        :root {
+            --bg-color: #121214;
+            --card-bg: #202024;
+            --text-color: #e1e1e6;
+            --primary: #00b37e;
+            --primary-hover: #00875f;
+            --danger: #f75a68;
+            --highlight: #e1e1e6;
+        }
 
-    <title>Thiago — Front-End Developer</title>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        .container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #a9a9b2;
+        }
+
+        .select-container {
+            margin-bottom: 30px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 2px solid #29292e;
+            border-radius: 6px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        select:focus {
+            border-color: var(--primary);
+        }
+
+        .display-materia {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            min-height: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timer {
+            font-size: 5.5rem;
+            font-weight: bold;
+            font-family: monospace;
+            margin: 20px 0;
+            color: var(--highlight);
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-start {
+            background-color: var(--primary);
+            color: #fff;
+        }
+
+        .btn-start:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-pause {
+            background-color: #7c7c8a;
+            color: #fff;
+        }
+
+        .btn-reset {
+            background-color: var(--danger);
+            color: #fff;
+        }
+
+        .btn-reset:hover {
+            opacity: 0.9;
+        }
+    </style>
 </head>
-
 <body>
 
-    <!-- CURSOR -->
-    <div class="cursor"></div>
-
-    <!-- NAVBAR -->
-    <header class="navbar">
-
-        <a href="#" class="logo">
-            <span>&lt;</span>THIAGO<span>/&gt;</span>
-        </a>
-
-        <nav>
-            <a href="#home">Início</a>
-            <a href="#projetos">Projetos</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#contato">Contato</a>
-        </nav>
-
-        <a href="#contato" class="nav-button">
-            Vamos conversar ↗
-        </a>
-
-    </header>
-
-
-    <!-- HERO -->
-    <main>
-        <section class="hero" id="home">
-            <div class="hero-background"></div>
-            <div class="hero-content">
-                <div class="availability">
-                    <span></span>
-                    DISPONÍVEL PARA PROJETOS
-                </div>
-                <h1>
-                    Eu transformo<br>
-                    <span>ideias</span> em interfaces.
-                </h1>
-                <p>
-                    Desenvolvedor Front-End focado em criar experiências
-                    digitais modernas, rápidas e visualmente marcantes.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projetos" class="primary-button">
-                        Ver projetos
-                        <span>↓</span>
-                    </a>
-                    <a href="#contato" class="secondary-button">
-                        Entrar em contato
-                    </a>
-                </div>
-            </div>
-            <div class="hero-code">
-                <div class="code-header">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-<pre><code><span class="purple">const</span> developer = {
-    name: <span class="green">"Thiago"</span>,
-    role: <span class="green">"Front-End"</span>,
-    skills: [
-        <span class="green">"HTML"</span>,
-        <span class="green">"CSS"</span>,
-        <span class="green">"JavaScript"</span>,
-        <span class="green">"Vue.js"</span>
-    ],
-    creativity: <span class="orange">100</span>%
-};</code></pre>
-            </div>
-            <div class="scroll">
-                SCROLL ↓
-            </div>
-        </section>
-        <!-- MARQUEE -->
-        <section class="marquee">
-            <div>
-                FRONT-END • UI DESIGN • DEVELOPMENT • CREATIVE CODE •
-                FRONT-END • UI DESIGN • DEVELOPMENT • CREATIVE CODE •
-            </div>
-        </section>
-        <!-- PROJETOS -->
-        <section class="projects section" id="projetos">
-            <div class="section-heading">
-                <div>
-                    <span class="eyebrow">01 — PORTFÓLIO</span>
-                    <h2>
-                        Projetos que<br>
-                        <em>falam por si.</em>
-                    </h2>
-                </div>
-                <p>
-                    Uma seleção de interfaces e experiências digitais
-                    desenvolvidas para diferentes tipos de projetos.
-                </p>
-            </div>
-            <!-- FILTROS -->
-            <div class="filters">
-                <button class="filter active" data-filter="all">
-                    Todos
-                </button>
-                <button class="filter" data-filter="web">
-                    Websites
-                </button>
-                <button class="filter" data-filter="ecommerce">
-                    E-commerce
-                </button>
-            </div>
-            <!-- GRID -->
-            <div class="project-grid">
-                <!-- PROJETO 1 -->
-                <article class="project-card large" data-category="ecommerce">
-                    <div class="project-image fashion">
-                        <div class="mockup">
-                            <div class="mockup-top">
-                                MONOCHROME
-                                <span>MENU　 CART</span>
-                            </div>
-                            <div class="fashion-title">
-                                LESS<br>
-                                <i>IS</i><br>
-                                MORE.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div>
-                            <span>E-COMMERCE</span>
-                            <h3>Monochrome</h3>
-                        </div>
-                        <a href="#" class="project-arrow">↗</a>
-                    </div>
-                </article>
-
-                <!-- PROJETO 2 -->
-                <article class="project-card" data-category="web">
-                    <div class="project-image vertex">
-                        <div class="vertex-content">
-                            <small>VERTEX</small>
-                            <strong>
-                                LAB<br>
-                                EQUIPMENT
-                            </strong>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div>
-                            <span>WEBSITE</span>
-                            <h3>Vertex Lab</h3>
-                        </div>
-                        <a href="#" class="project-arrow">↗</a>
-                    </div>
-                </article>
-
-                <!-- PROJETO 3 -->
-                <article class="project-card large" data-category="web">
-                    <div class="project-image architecture">
-                        <div>
-                            <span>ARCH / 2026</span>
-                            <h3>
-                                SPACE<br>
-                                BETWEEN
-                            </h3>
-                            <small>
-                                Architecture & Interior
-                            </small>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div>
-                            <span>CREATIVE WEBSITE</span>
-                            <h3>Atelier 01</h3>
-                        </div>
-                        <a href="#" class="project-arrow">↗</a>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- SOBRE -->
-        <section class="about section" id="sobre">
-            <div class="about-number">
-                02
-            </div>
-            <div class="about-content">
-                <span class="eyebrow">
-                    SOBRE MIM
-                </span>
-                <h2>
-                    Código com<br>
-                    <em>personalidade.</em>
-                </h2>
-                <p>
-                    Gosto de criar interfaces que não sejam apenas bonitas,
-                    mas que tenham propósito. Cada projeto começa com uma
-                    ideia e termina em uma experiência digital intuitiva.
-                </p>
-                <p>
-                    Meu foco está em Front-End, UI, responsividade,
-                    animações e desenvolvimento de experiências modernas
-                    para web.
-                </p>
-                <div class="skills">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                    <span>Responsive Design</span>
-                    <span>UI / UX</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROCESSO -->
-        <section class="process section">
-            <span class="eyebrow">
-                03 — PROCESSO
-            </span>
-            <h2>
-                Do conceito ao<br>
-                <em>pixel perfeito.</em>
-            </h2>
-            <div class="process-grid">
-                <div class="process-item">
-                    <span>01</span>
-                    <h3>Descobrir</h3>
-                    <p>
-                        Entender o projeto, objetivo, público e
-                        necessidades da interface.
-                    </p>
-                </div>
-                <div class="process-item">
-                    <span>02</span>
-                    <h3>Projetar</h3>
-                    <p>
-                        Transformar ideias em uma experiência visual
-                        clara, moderna e funcional.
-                    </p>
-                </div>
-                <div class="process-item">
-                    <span>03</span>
-                    <h3>Desenvolver</h3>
-                    <p>
-                        Construir uma interface responsiva,
-                        performática e fiel ao conceito.
-                    </p>
-                </div>
-                <div class="process-item">
-                    <span>04</span>
-                    <h3>Entregar</h3>
-                    <p>
-                        Testar, otimizar e entregar uma experiência
-                        pronta para diferentes dispositivos.
-                    </p>
-                </div>
-            </div>
-        </section>
-		
-        <!-- CONTATO -->
-        <section class="contact section" id="contato">
-            <div class="contact-inner">
-                <span class="eyebrow">
-                    04 — CONTATO
-                </span>
-                <h2>
-                    Tem uma ideia?<br>
-                    <em>Vamos criar.</em>
-                </h2>
-                <a href="mailto:seuemail@email.com" class="email">
-                    seuemail@email.com
-                    <span>↗</span>
-                </a>
-                <div class="socials">
-                    <a href="#">GitHub</a>
-                    <a href="#">LinkedIn</a>
-                    <a href="#">Instagram</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <div>
-            © 2026 THIAGO
+    <div class="container">
+        <h1>Foco nos Estudos</h1>
+        
+        <div class="select-container">
+            <select id="materiaSelect" onchange="atualizarMateria()">
+                <option value="Selecione uma matéria">-- Escolha a Matéria Atual --</option>
+                <option value="Matemática">Matemática</option>
+                <option value="Gramática / Literatura">Gramática / Literatura</option>
+                <option value="Redação">Redação</option>
+                <option value="História">História</option>
+                <option value="Geografia">Geografia</option>
+                <option value="Biologia">Biologia</option>
+                <option value="Física">Física</option>
+                <option value="Química">Química</option>
+                <option value="Filosofia / Sociologia">Filosofia / Sociologia</option>
+                <option value="Língua Estrangeira">Língua Estrangeira</option>
+                <option value="Revisão / Questões">Revisão / Questões</option>
+            </select>
         </div>
-        <div>
-            DESIGNED & CODED WITH ☕
+
+        <div class="display-materia" id="materiaDestaque">Selecione uma matéria</div>
+        <div class="timer" id="timerDisplay">50:00</div>
+
+        <div class="controls">
+            <button class="btn-start" id="startBtn" onclick="iniciarCronometro()">Iniciar</button>
+            <button class="btn-pause" id="pauseBtn" onclick="pausarCronometro()" style="display: none;">Pausar</button>
+            <button class="btn-reset" onclick="resetarCronometro()">Reiniciar</button>
         </div>
-        <a href="#home">
-            BACK TO TOP ↑
-        </a>
-    </footer>
-    <script src="script.js"></script>
+    </div>
+
+    <script>
+        let tempoInicial = 50 * 60; // 50 minutos em segundos
+        let tempoRestante = tempoInicial;
+        let intervalo = null;
+
+        const timerDisplay = document.getElementById('timerDisplay');
+        const materiaSelect = document.getElementById('materiaSelect');
+        const materiaDestaque = document.getElementById('materiaDestaque');
+        const startBtn = document.getElementById('startBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+
+        function atualizarMateria() {
+            materiaDestaque.textContent = materiaSelect.value;
+        }
+
+        function formatarTempo(segundos) {
+            const mins = Math.floor(segundos / 60).toString().padStart(2, '0');
+            const segs = (segundos % 60).toString().padStart(2, '0');
+            return `${mins}:${segs}`;
+        }
+
+        function atualizarDisplay() {
+            timerDisplay.textContent = formatarTempo(tempoRestante);
+        }
+
+        function iniciarCronometro() {
+            if (intervalo !== null) return;
+
+            startBtn.style.display = 'none';
+            pauseBtn.style.display = 'inline-block';
+
+            intervalo = setInterval(() => {
+                if (tempoRestante > 0) {
+                    tempoRestante--;
+                    atualizarDisplay();
+                } else {
+                    clearInterval(intervalo);
+                    intervalo = null;
+                    alert("Fim da aula! Hora de um descanso.");
+                    resetarCronometro();
+                }
+            }, 1000);
+        }
+
+        function pausarCronometro() {
+            clearInterval(intervalo);
+            intervalo = null;
+            startBtn.style.display = 'inline-block';
+            pauseBtn.style.display = 'none';
+        }
+
+        function resetarCronometro() {
+            pausarCronometro();
+            tempoRestante = tempoInicial;
+            atualizarDisplay();
+        }
+
+        // Inicializa o display com 50:00
+        atualizarDisplay();
+    </script>
 </body>
 </html>
